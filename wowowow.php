@@ -2,7 +2,7 @@
 
 session_start();
 
-if (!$_SESSION['admin']) {
+if (!$_SESSION['wowowow']) {
 	header("Location: admin_login.php");
 }
 

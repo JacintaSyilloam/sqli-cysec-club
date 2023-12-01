@@ -26,8 +26,8 @@ if (isset($_POST['submit'])) {
 	if (mysqli_num_rows($login) == 0) {
 		die("Username atau password salah!");
 	} else {
-		$_SESSION['admin'] = 1;
-		header("Location: admin.php");
+		$_SESSION['wowowow'] = 1;
+		header("Location: wowowow.php");
 	}
 	
 }
