@@ -7,11 +7,21 @@ if (isset($_POST['submit'])) {
 	$username = $_POST['username'];
 	$password = $_POST['password'];
 	
-	$login = mysqli_query($conn, "SELECT * FROM user WHERE username = '{$username}' AND password = '{$password}'");
-
-	if(($password) == "' or '1'='1") {
+	if(($password) == "' or '1'='1" || 
+	($password) == "' or ''='" || 
+	($password) == "' or /* or '" || 
+	($password) == "' or 1 or '" ||  
+	($password) == "or 1=1--"|| 
+	($password) == "' or 1=1--"|| 
+	($password) == "' or '1'='1'--") {
 		die("SQLI detected, hayo ngapain ke sini >:0");
 	}
+
+	$username = str_replace(' ', 'h3h3', $username);
+    $password = str_replace(' ', 'h3h3', $password);
+	
+	$login = mysqli_query($conn, "SELECT * FROM user WHERE username = '{$username}' AND password = '{$password}'");
+
 
 	if (mysqli_num_rows($login) == 0) {
 		die("Username atau password salah!");
